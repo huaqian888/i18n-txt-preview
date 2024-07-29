@@ -1,0 +1,85 @@
+{
+  "name": "i18n-txt-preview",
+  "displayName": "i18n-txt-preview",
+  "description": "preview the i18n cn result",
+  "publisher": "huaqian",
+  "repository": "huaqian-plugin",
+  "version": "1.1.2",
+  "engines": {
+    "vscode": "^1.89.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onStartupFinished",
+    "onCommand:i18n.translate"
+  ],
+  "main": "./src/index.js",
+  "contributes": {
+    "snippets": [
+      {
+        "language": "vue",
+        "path": "./snippets/snippets.json"
+      },
+      {
+        "language": "vue-html",
+        "path": "./snippets/snippets.json"
+      },
+      {
+        "language": "javascript",
+        "path": "./snippets/snippets.json"
+      }
+    ],
+    "configuration": {
+      "type": "object",
+      "title": "i18n-txt-preview",
+      "properties": {
+        "i18n-txt-preview.path": {
+          "type": "string",
+          "default": "src/language/message_zh_CN.txt"
+        },
+        "i18n-txt-preview.translate": {
+          "type": "string",
+          "default": "nodeServer/batchReplace.js"
+        }
+      }
+    },
+    "commands": [
+      {
+        "command": "i18n.translate",
+        "title": "翻译"
+      }
+    ],
+    "menus": {
+      "explorer/context": [
+        {
+          "command": "i18n.translate",
+          "group": "group-i18n",
+          "when": "resourceLangId == javascript || resourceLangId == vue || explorerResourceIsFolder"
+        }
+      ],
+      "editor/context": [
+        {
+          "command": "i18n.translate",
+          "group": "group-i18n",
+          "when": "resourceLangId == javascript || resourceLangId == vue"
+        }
+      ]
+    }
+  },
+  "scripts": {
+    "lint": "eslint .",
+    "pretest": "pnpm run lint",
+    "test": "vscode-test"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.89.0",
+    "@types/mocha": "^10.0.6",
+    "@types/node": "18.x",
+    "eslint": "^8.57.0",
+    "typescript": "^5.4.5",
+    "@vscode/test-cli": "^0.0.9",
+    "@vscode/test-electron": "^2.3.9"
+  }
+}

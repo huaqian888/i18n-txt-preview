@@ -1,0 +1,24 @@
+{
+    "国际化": {
+        "prefix": "ip",
+        "body": [
+            "$.i18n.prop('$1')"
+        ],
+        "description": "国际化"
+    },
+    "权限": {
+        
+        "prefix": "jp",
+        "body": [
+            "judgePermission('$1')"
+        ],
+        "description": "权限"
+    },
+    "个人权限": {
+        "prefix": "co",
+        "body": [
+            "checkOwner($1, '$2')"
+        ],
+        "description": "个人权限"
+    }
+}
