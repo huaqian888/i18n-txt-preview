@@ -12,8 +12,7 @@
     "Other"
   ],
   "activationEvents": [
-    "onStartupFinished",
-    "onCommand:i18n.translate"
+    "onStartupFinished"
   ],
   "main": "./src/index.js",
   "contributes": {
@@ -41,7 +40,11 @@
         },
         "i18n-txt-preview.translate": {
           "type": "string",
-          "default": "nodeServer/batchReplace.js"
+          "default": "public/batchReplace.js"
+        },
+        "i18n-txt-preview.trans": {
+          "type": "string",
+          "default": "public/translate.js"
         }
       }
     },
@@ -49,6 +52,10 @@
       {
         "command": "i18n.translate",
         "title": "翻译"
+      },
+      {
+        "command": "trans",
+        "title": "句子翻译"
       }
     ],
     "menus": {
