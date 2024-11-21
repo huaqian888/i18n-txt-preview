@@ -7,7 +7,7 @@ let fileContent = fs.readFileSync(path, 'utf-8')
 module.exports = vscode.languages.registerHoverProvider(["javascript", "vue", "html"], {
     provideHover(document, position, token) {
         const word = document.getText(document.getWordRangeAtPosition(position));
-        const i18nReg = new RegExp(`\\$\\.i18n\\.prop\\(['"][^'"]*?${word}.*?['"]\\)`, 'g')
+        const i18nReg = new RegExp(`\\$\\.i18n\\.prop\\(['"][^'"]*?${word}.*?['"][^)]*?\\)`, 'g')
         const dataReg = new RegExp(`data-i18n-(?:text|placeholder|html|title)="[^"]*${word}[^"]*"`, 'g')
         const lineText = document.lineAt(position).text ?? ''
         const list = [...lineText.match(i18nReg) ?? [], ...lineText.match(dataReg) ?? []]
