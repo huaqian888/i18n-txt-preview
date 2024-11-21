@@ -4,7 +4,7 @@
   "description": "preview the i18n cn result",
   "publisher": "huaqian",
   "repository": "huaqian-plugin",
-  "version": "1.1.3",
+  "version": "1.1.4",
   "engines": {
     "vscode": "^1.89.0"
   },
