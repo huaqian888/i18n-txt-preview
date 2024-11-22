@@ -1,11 +1,17 @@
 const vscode = require("vscode");
 const fs= require("fs");
 
-const path = vscode.window.activeTextEditor.document.uri.path.split('src')[0] + vscode.workspace.getConfiguration().get('i18n-txt-preview.path')
-let fileContent = fs.readFileSync(path, 'utf-8')
-
+let path
+let fileContent
 module.exports = vscode.languages.registerHoverProvider(["javascript", "vue", "html"], {
     provideHover(document, position, token) {
+        if(!path) {
+            path = vscode.window.activeTextEditor.document.uri.path.split('src')[0] + vscode.workspace.getConfiguration().get('i18n-txt-preview.path')
+        }
+        if(!fileContent) {
+            fileContent = fs.readFileSync(path, 'utf-8')
+        }
+
         const word = document.getText(document.getWordRangeAtPosition(position));
         const i18nReg = new RegExp(`\\$\\.i18n\\.prop\\(['"][^'"]*?${word}.*?['"][^)]*?\\)`, 'g')
         const dataReg = new RegExp(`data-i18n-(?:text|placeholder|html|title)="[^"]*${word}[^"]*"`, 'g')
