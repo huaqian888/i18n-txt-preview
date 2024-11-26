@@ -6,7 +6,7 @@ let fileContent
 module.exports = vscode.languages.registerHoverProvider(["javascript", "vue", "html"], {
     provideHover(document, position, token) {
         if(!path) {
-            path = vscode.window.activeTextEditor.document.uri.path.split('src')[0] + vscode.workspace.getConfiguration().get('i18n-txt-preview.path')
+            path = vscode.workspace.workspaceFolders[0].uri.path + '/' + vscode.workspace.getConfiguration().get('i18n-txt-preview.path')
         }
         if(!fileContent) {
             fileContent = fs.readFileSync(path, 'utf-8')

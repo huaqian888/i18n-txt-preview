@@ -6,7 +6,7 @@ let path
 let fileContent
 module.exports = vscode.commands.registerCommand('trans', () => {
     if (!path) {
-        path = vscode.window.activeTextEditor.document.uri.path.split('src')[0] + vscode.workspace.getConfiguration().get('i18n-txt-preview.trans')
+        path = vscode.workspace.workspaceFolders[0].uri.path + '/' + vscode.workspace.getConfiguration().get('i18n-txt-preview.trans')
     }
     if (!fileContent) {
         fileContent = fs.readFileSync(path, 'utf-8');
